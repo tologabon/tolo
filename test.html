@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOLO</title>
+  <style>
+    /* Styles de base */
+   
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #44326A;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+  
+    .form-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .progress-bar {
+      height: 5px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0;
+      background: #44326A;
+      transition: width 0.3s;
+    }
+
+    .form-card {
+      display: none;
+      flex-direction: column;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .form-card.active {
+      display: flex;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      margin-right: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form-footer button {
+      background: #44326A;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 16px;
+            font-weight: bold;
+    }
+
+    .form-footer button:hover {
+      background: #3700b3;
+    }
+
+    .form-footer .back-btn {
+      background: #ccc;
+    }
+
+    .form-footer .back-btn:hover {
+      background: #bbb;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .text-rouge {
+  color: red !important; /* Priorise la couleur rouge */
+  margin-top: 0;
+};
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: -15px;
+      margin-bottom: 10px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      
+    }
+
+    .header-buttons .buttonjack {
+      background-color: #ffd700;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: none;
+      cursor: not-allowed;
+    }
+    .header-buttons .button {
+      background-color: #ff5722;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: none;
+      cursor: not-allowed;
+    }
+    .submit-btn {
+color: white;
+text-decoration: none;
+background-color: #44326A ;
+border-radius: 5px;
+background: #44326A;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+            font-weight: bold;
+    };
+   
+  </style>
+</head>
+
+  
+<body>
+   
+  <div class="header">
+    <img src="C:\Users\Hp\Downloads\monsitetolo\vrailogo.png" alt="Logo">
+    <div class="header-buttons">
+      <div class="buttonjack">Jackpot du jour :</div>
+      <div class="button">500000 FCFA</div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form id="multi-step-form">
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+
+      <!-- Cadres -->
+      <!-- Étape 1 -->
+      <div class="form-card active">
+        <H1 class="step">BİENVENUE</H1>
+        <h2>Entrez votre nom ou pseudo</h2>
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder="Entre ton nom ici" required>
+        </div>
+        <div class="form-footer">
+          <button type="button" class="next-btn">Suivant</button>
+        </div>
+      </div>
+
+      <!-- Étape 2 -->
+      <div class="form-card">
+        <h2 class="step">On continue...</h2>
+        <h2>Entrez votre email</h2>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Entre ton email ici" required>
+        </div>
+        <div class="form-footer">
+          <button type="button" class="back-btn">retour</button>
+          <button type="button" class="next-btn">suivant</button>
+        </div>
+      </div>
+
+      <!-- Étape 3 -->
+      <div class="form-card">
+        <h2 class="step">Presque...</h2>
+        <h2>Entrez votre numero de telephone</h2>
+        <div class="form-group">
+          <input type="tel" id="phone" name="phone" placeholder="Entre ton numero de telephone ici" required>
+        </div>
+        <div class="form-footer">
+          <button type="button" class="back-btn">retour</button>
+          <button type="button" class="next-btn">suivant</button>
+        </div>
+      </div>
+
+      <!-- Étape 4 -->
+      <div class="form-card">
+       <h2>Derniere etape</h2>
+        <h2>Entrez votre combinaison</h2>
+        <p class="text-rouge">Vous devez le remplire obligatoirement!!!</p>
+
+
+        <div class="form-group">
+          <input
+            type="text"
+            id="combination"
+            name="combination"
+            placeholder="Exemple : 165423"
+            required
+            maxlength="6"
+          >
+          <div class="error" id="combination-error"></div>
+        </div>
+        <div class="form-footer">
+          <button type="button" class="back-btn">retour</button>
+         <a href="pay.html" class="submit-btn">confirmer</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".form-card");
+      const nextButtons = document.querySelectorAll(".next-btn");
+      const backButtons = document.querySelectorAll(".back-btn");
+      const progress = document.querySelector(".progress");
+      const combinationInput = document.getElementById("combination");
+      const combinationError = document.getElementById("combination-error");
+      let currentStep = 0;
+
+      function updateStep() {
+        cards.forEach((card, index) => {
+          card.classList.toggle("active", index === currentStep);
+        });
+        progress.style.width = `${((currentStep + 1) / cards.length) * 100}%`;
+      }
+
+      nextButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (currentStep < cards.length - 1) {
+            currentStep++;
+            updateStep();
+          }
+        });
+      });
+
+      backButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (currentStep > 0) {
+            currentStep--;
+            updateStep();
+          }
+        });
+      });
+
+      // Empêcher l'entrée de chiffres non autorisés ou doublons
+      combinationInput.addEventListener("input", (e) => {
+        const value = e.target.value;
+        const lastChar = value.slice(-1);
+        const uniqueChars = new Set(value);
+
+        if (!/^[1-6]$/.test(lastChar) || uniqueChars.size !== value.length) {
+          e.target.value = value.slice(0, -1); // Supprime le dernier caractère non valide
+        }
+      });
+
+      updateStep();
+    });
+  </script>
+</body>
+</html>

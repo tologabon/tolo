@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOLO</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #44326A;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            background-color: #44326A;
+            color: white;
+            padding: 15px 0;
+        }
+
+        header img {
+            height: 80px;
+            width: auto;
+        }
+
+        .jackpot-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .jackpot-button {
+            background-color: #ffd700;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        .amount-button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px 0;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        .card.active {
+            display: block;
+        }
+
+        .card p {
+            margin: 0 0 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0 20px;
+        }
+
+        .progress-bar .progress {
+            height: 100%;
+            background-color: #44326A;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .navigation-button {
+            padding: 15px 30px;
+            background-color: #44326A;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex: 1;
+        }
+
+        .navigation-button:hover {
+            background-color: #3700b3;
+        }
+
+        .navigation-button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="C:\Users\Hp\Downloads\images\pettolo.png" alt="Logo">
+    
+
+
+    </header>
+
+    <div class="jackpot-container">
+        <button class="jackpot-button">Jackpot du jour :</button>
+        <button class="amount-button">500000 FCFA</button>
+    </div>
+
+    <div class="card active" id="card-1">
+        <h1>REGLES DU JEU :</h1>
+        <p>1.  Choisissez une combinaison de 6 chiffres composee uniquement de chiffre allant de 1 a 6. (exmple :165423)</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 20%;"></div>
+        </div>
+        <div class="button-container">
+            <a href="test.html"><button class="navigation-button">Commencer</button></a>
+            <button class="navigation-button" onclick="nextCard(1)">Suivant</button>
+        </div>
+    </div>
+
+    <div class="card" id="card-2">
+        <h1>REGLES DU JEU :</h1>
+        <p>2.  * Vous gagnez le jackpot si vous trouvez les 6 chiffres dans le bon ordre.</p>
+        <p>* Vous gagnez un gain secondaire si vous trouvez uniquement les 3 premiers chiffres dans le bon ordre.</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 40%;"></div>
+        </div>
+        <div class="button-container">
+            <a href="test.html"><button class="navigation-button">Commencer</button></a>
+            <button class="navigation-button" onclick="nextCard(2)">Suivant</button>
+        </div>
+    </div>
+
+    <div class="card" id="card-3">
+        <h1>REGLES DU JEU :</h1>
+        <p>3.  Canal de diffusion : les résultats seront diffusés en live sur Instagram et via notre chaîne WhatsApp.</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 60%;"></div>
+        </div>
+        <div class="button-container">
+            <a href="test.html"><button class="navigation-button">Commencer</button></a>
+            <button class="navigation-button" onclick="nextCard(3)">Suivant</button>
+        </div>
+    </div>
+
+    <div class="card" id="card-4">
+        <h1>REGLES DU JEU :</h1>
+        <p>4. Frais de participation : La mise (550 FCFA) est à payer via Airtel Money ou mobicash</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 80%;"></div>
+        </div>
+        <div class="button-container">
+            <a href="test.html"><button class="navigation-button">Commencer</button></a>
+            <button class="navigation-button" onclick="nextCard(4)">Suivant</button>
+        </div>
+    </div>
+
+    <div class="card" id="card-5">
+        <h1>REGLES DU JEU :</h1>
+        <p>5. Veillez bien entrer tout les informations d'inscription.</p>
+        <h3>Bonne chance !!</h3>
+        <div class="progress-bar">
+            <div class="progress" style="width: 100%;"></div>
+        </div>
+        <div class="button-container">
+            <a href="test.html"><button class="navigation-button">Commencer le jeu</button></a>
+        </div>
+    </div>
+
+    <script>
+        function nextCard(currentCard) {
+            document.getElementById(`card-${currentCard}`).classList.remove('active');
+            const nextCard = currentCard + 1;
+            document.getElementById(`card-${nextCard}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>

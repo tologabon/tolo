@@ -387,18 +387,18 @@ background: #44326A;
       updateStep();
     });
   </script>
-     <script type="module">
+
+<script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-  import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyBZOfdl69ZfBZvf9bRr67ruH_3CbcmYDWk",
     authDomain: "tolo-a5297.firebaseapp.com",
     projectId: "tolo-a5297",
-    storageBucket: "tolo-a5297.firebasestorage.app",
+    storageBucket: "tolo-a5297.appspot.com",
     messagingSenderId: "323092711796",
     appId: "1:323092711796:web:3d74d6e1a383f14ccd8421"
   };
@@ -406,22 +406,39 @@ background: #44326A;
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-  // get ref database services 
+  // Get database service
   const db = getDatabase(app);
 
-  document.getElementById("submit").addEventListener('click', function(e) {
-  set(ref(db,'user/' + document.getElementById("name").value,),{
+  document.getElementById("submit-btn").addEventListener('click', function (e) {
+    e.preventDefault();
 
-  name: document.getElementById("name").value,
-  email: document.getElementById("email").value,
-  phone: document.getElementById("phone").value,
-  combination: document.getElementById("combination").value
+    // Validate form fields
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const combination = document.getElementById("combination").value.trim();
 
-});
-alert("enregistrer");
-  })
+    if (!name || !email || !phone || !combination) {
+      alert("Veuillez remplir tous les champs !");
+      return;
+    }
+
+    // Save data to Firebase
+    set(ref(db, 'users/' + name), {
+      name: name,
+      email: email,
+      phone: phone,
+      combination: combination
+    })
+      .then(() => {
+        alert("Données enregistrées avec succès !");
+      })
+      .catch((error) => {
+        alert("Erreur lors de l'enregistrement : " + error.message);
+      });
+  });
 </script>
-  
+
  
 </body>
 </html>

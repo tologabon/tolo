@@ -333,7 +333,7 @@ background: #44326A;
         
         <div class="form-footer">
           <button type="button" class="back-btn">retour</button>
-         <a href="pay.html" class="submit-btn">confirmer</a>
+         <a href="pay.html" class="submit-btn" id="submit">confirmer</a>
       </div>
     </form>
   </div>
@@ -386,44 +386,40 @@ background: #44326A;
 
       updateStep();
     });
-  // Soumettre les données vers Make
-  form.addEventListener("submit", (e) => {
-      e.preventDefault();
+     
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+  import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
 
-      // Récupérer les données du formulaire
-      const formData = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        combination: document.getElementById("combination").value,
-        isAdult: document.getElementById("age-toggle").checked,
-      };
 
-      // Envoyer les données au webhook Make
-      fetch("https://hook.eu2.make.com/ldnfj9qspu1ifqs33wy5broqbah8i1hk", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((response) => {
-          if (response.ok) {
-            alert("Données envoyées avec succès !");
-            window.location.href = "pay.html"; // Redirection après soumission
-          } else {
-            alert("Erreur lors de l'envoi des données. Réessayez.");
-          }
-        })
-        .catch((error) => {
-          console.error("Erreur :", error);
-          alert("Erreur réseau. Vérifiez votre connexion.");
-        });
-    });
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBZOfdl69ZfBZvf9bRr67ruH_3CbcmYDWk",
+    authDomain: "tolo-a5297.firebaseapp.com",
+    projectId: "tolo-a5297",
+    storageBucket: "tolo-a5297.firebasestorage.app",
+    messagingSenderId: "323092711796",
+    appId: "1:323092711796:web:3d74d6e1a383f14ccd8421"
+  };
 
-    updateStep();
- 
-  
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  // get ref database services 
+  const db = getDatabase(app);
+
+  document.getElementById("submit").addEventListener('click', function(e) {
+set(ref(db,'user/' + document.getElementById("name").value,),{
+
+  name: document.getElementById("name").value,
+  email: document.getElementById("email").value,
+  phone: document.getElementById("phone").value,
+  combination: document.getElementById("combination").value
+
+});
+alert("enregistrer");
+  })
+</script>
   
   </script>
 </body>
